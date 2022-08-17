@@ -10,7 +10,7 @@ echo -e "${GREEN}Installing gems${NC}"
 bundle install
  
 echo -e "${GREEN}Creating database${NC}"
-bundle exec rails db:create || exit $?
-RAILS_ENV=test bundle exec rails db:create || exit $?
+bundle exec rails db:create db:migrate || exit $?
+RAILS_ENV=test bundle exec rails db:create db:migrate || exit $?
 
 $@
