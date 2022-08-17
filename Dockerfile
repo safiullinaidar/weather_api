@@ -1,7 +1,7 @@
 FROM ruby:3.1.2
 
-RUN apt update -qq && \
-    apt install --no-install-recommends -yqq \
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -yqq \
       netcat
 
 WORKDIR /app

@@ -29,6 +29,8 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./tmp/db_data:/var/lib/postgresql/data
+    networks:
+      - weather_api
     
 networks:
   weather_api:
