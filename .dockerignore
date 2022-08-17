@@ -1,0 +1,10 @@
+.git
+.gitignore
+/tmp
+/log
+!/tmp/.keep
+!/tmp/pids/.keep
+!/log/.keep
+Dockerfile
+docker-compose*
+README.md
