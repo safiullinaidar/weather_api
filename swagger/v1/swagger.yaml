@@ -1,0 +1,186 @@
+---
+openapi: 3.0.1
+info:
+  title: Weather API
+  version: v1
+paths:
+  "/weather/current":
+    get:
+      summary: returns current temperature
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              examples:
+                success_example:
+                  value:
+                    temperature: '15.0'
+              schema:
+                type: object
+                properties:
+                  temperature:
+                    type: string
+  "/weather/historical/min":
+    get:
+      summary: returns minimal temperature for last 24 hours
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              examples:
+                success_example:
+                  value:
+                    temperature: '15.0'
+              schema:
+                type: object
+                properties:
+                  temperature:
+                    type: string
+  "/weather/historical/max":
+    get:
+      summary: returns maximal temperature for last 24 hours
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              examples:
+                success_example:
+                  value:
+                    temperature: '23.0'
+              schema:
+                type: object
+                properties:
+                  temperature:
+                    type: string
+  "/weather/historical/avg":
+    get:
+      summary: returns average temperature for last 24 hours
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              examples:
+                success_example:
+                  value:
+                    temperature: '21.5'
+              schema:
+                type: object
+                properties:
+                  temperature:
+                    type: string
+  "/weather/historical":
+    get:
+      summary: returns temperature for last 24 hours
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              examples:
+                success_example:
+                  value:
+                    data:
+                    - temperature: '15.0'
+                      condition_time: '2022-08-19T13:34:42.241Z'
+                    - temperature: '16.0'
+                      condition_time: '2022-08-19T12:34:42.247Z'
+                    - temperature: '17.0'
+                      condition_time: '2022-08-19T11:34:42.252Z'
+                    - temperature: '18.0'
+                      condition_time: '2022-08-19T10:34:42.257Z'
+                    - temperature: '19.0'
+                      condition_time: '2022-08-19T09:34:42.261Z'
+                    - temperature: '20.0'
+                      condition_time: '2022-08-19T08:34:42.265Z'
+                    - temperature: '21.0'
+                      condition_time: '2022-08-19T07:34:42.270Z'
+                    - temperature: '22.0'
+                      condition_time: '2022-08-19T06:34:42.274Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-19T05:34:42.280Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-19T04:34:42.287Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-19T03:34:42.292Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-19T02:34:42.296Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-19T01:34:42.304Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-19T00:34:42.309Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T23:34:42.315Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T22:34:42.320Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T21:34:42.325Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T20:34:42.329Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T19:34:42.333Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T18:34:42.338Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T17:34:42.342Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T16:34:42.347Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T15:34:42.352Z'
+                    - temperature: '23.0'
+                      condition_time: '2022-08-18T14:34:42.358Z'
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        temperature:
+                          type: string
+                        condition_time:
+                          type: string
+  "/weather/by_time":
+    get:
+      summary: returns temperature closest to given timestamp
+      parameters:
+      - name: timestamp
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              examples:
+                success_example:
+                  value:
+                    temperature: '18.0'
+              schema:
+                type: object
+                properties:
+                  temperature:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                error_example:
+                  value:
+                    error: Not found
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
