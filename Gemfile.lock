@@ -72,13 +72,30 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    daemons (1.4.1)
+    data_migrate (8.1.1)
+      activerecord (>= 5.0)
+      railties (>= 5.0)
     debug (1.6.2)
       irb (>= 1.3.6)
       reline (>= 0.3.1)
+    delayed_job (4.1.10)
+      activesupport (>= 3.0, < 8.0)
+    delayed_job_active_record (4.1.7)
+      activerecord (>= 3.0, < 8.0)
+      delayed_job (>= 3.0, < 5)
     digest (3.1.0)
     erubi (1.11.0)
+    et-orbi (1.2.7)
+      tzinfo
+    fugit (1.5.3)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    httparty (0.20.0)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
@@ -91,9 +108,13 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
     method_source (1.0.0)
+    mime-types (3.4.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.5.4)
+    multi_xml (0.6.0)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -119,6 +140,7 @@ GEM
       pry (>= 0.10.4)
     puma (5.6.4)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.4)
     rack-test (2.0.2)
@@ -152,6 +174,8 @@ GEM
     rake (13.0.6)
     reline (0.3.1)
       io-console (~> 0.5)
+    rufus-scheduler (3.8.2)
+      fugit (~> 1.1, >= 1.1.6)
     strscan (3.0.4)
     thor (1.2.1)
     timeout (0.3.0)
@@ -167,11 +191,16 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  daemons
+  data_migrate
   debug
+  delayed_job_active_record
+  httparty
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
+  rufus-scheduler
   tzinfo-data
 
 RUBY VERSION

@@ -1,12 +1,16 @@
-version: "3.3"
+version: "3.9"
+
+x-common-environment: &common-environment
+  DATABASE_URL: postgresql://postgres:password@db/weather_api_dev
+  TEST_DATABASE_URL: postgresql://postgres:password@db/weather_api_test
 
 services:
   weather_api:
     build:
       context: .
+      target: api
     environment:
-      DATABASE_URL: postgresql://postgres:password@db/weather_api_dev
-      TEST_DATABASE_URL: postgresql://postgres:password@db/weather_api_test
+      <<: *common-environment
     entrypoint: "/usr/bin/entrypoint.sh"
     command: bundle exec puma -C config/puma.rb
     ports:
@@ -20,6 +24,22 @@ services:
       - db
     stdin_open: true
     tty: true
+
+  daemons:
+    build:
+      context: .
+      target: daemons
+    environment:
+      <<: *common-environment
+    networks:
+      - weather_api
+    volumes:
+      - .:/app
+    entrypoint: "/usr/bin/daemons_entrypoint.sh"
+    command: bundle exec bin/delayed_job start
+    depends_on:
+      - db
+      - weather_api
 
   db:
     image: postgres:14

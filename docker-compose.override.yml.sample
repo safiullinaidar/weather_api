@@ -1,0 +1,10 @@
+x-common-environment: &common-environment
+  ACCUWEATHER_API_KEY: ACCUWEATHER_API_KEY
+
+services:
+  weather_api:
+    environment:
+      <<: *common-environment
+  daemons:
+    environment:
+      <<: *common-environment
